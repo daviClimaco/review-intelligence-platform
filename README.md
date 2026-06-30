@@ -13,4 +13,19 @@ An end-to-end review intelligence platform built to study software architecture,
 
 ## Status
 
-Planning & Architecture Phase
+- (DONE) Planning & Architecture
+- (DONE) Project Structure
+- (DONE) Python Environment Setup
+- (DONE) PostgreSQL Configuration
+- (DONE) SQLAlchemy Setup
+- (DONE) Database Modeling (Author, Category, Review)
+- (DONE) FastAPI Setup
+- (DONE) Initial API & Swagger Documentation
+- (DOING) Backend Architecture (Repositories, Services & Schemas)
+- (WAITING) ETL Pipeline
+- (WAITING) Data Processing & Analysis
+- (WAITING) Machine Learning
+- (WAITING) NLP & Sentiment Analysis
+- (WAITING) Dashboard & Analytics
+- (WAITING) AI Assistant (RAG)
+- (WAITING) Docker & Deployment
