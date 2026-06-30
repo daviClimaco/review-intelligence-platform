@@ -2,7 +2,7 @@ from sqlalchemy import String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.sql import func
 
-from database.base import Base
+from src.database.base import Base
 
 class Category(Base):
 

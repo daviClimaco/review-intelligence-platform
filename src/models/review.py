@@ -4,9 +4,9 @@ from sqlalchemy import DateTime, ForeignKey, Numeric, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
 
-from database.base import Base
-from models.author import Author
-from models.category import Category
+from src.database.base import Base
+from src.models.author import Author
+from src.models.category import Category
 
 
 class Review(Base):
