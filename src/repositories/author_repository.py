@@ -15,6 +15,10 @@ class AuthorRepository:
     def get_by_id(self, author_id: int) -> Author | None:
         return self.db.query(Author).filter(Author.id == author_id).first()
 
+    #21/07/2026 - davi
+    def get_by_name(self, name: str) -> Author | None:
+        return self.db.query(Author).filter(Author.name == name).first()
+
     def create(self, data: AuthorCreate) -> Author:
         author = Author(**data.model_dump())
         self.db.add(author)
