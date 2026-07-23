@@ -4,11 +4,9 @@ An end-to-end review intelligence platform built to study software architecture,
 
 ## Goals
 
-- Learn Software Architecture
-- Learn System Design
-- Learn Data Engineering
-- Learn Machine Learning
-- Learn AI & NLP
+- Learn Software Architecture & System Design
+- Learn Data Engineering & ETL
+- Learn Machine Learning & NLP
 - Build an end-to-end real-world project
 
 ## Tech Stack
@@ -19,29 +17,28 @@ An end-to-end review intelligence platform built to study software architecture,
 - SQLAlchemy ORM
 - Pydantic
 - Uvicorn
+- Pandas
+- Scikit-learn
+- NLTK (VADER)
+- Jupyter Notebook
 
 ## Status
 
 - (DONE) Planning & Architecture
-- (DONE) Project Structure
-- (DONE) Python Environment Setup
-- (DONE) PostgreSQL Configuration
-- (DONE) SQLAlchemy Setup
+- (DONE) Project Structure & Python Environment Setup
+- (DONE) PostgreSQL + SQLAlchemy Configuration
 - (DONE) Database Modeling (Author, Category, Review)
-- (DONE) FastAPI Setup
-- (DONE) Initial API & Swagger Documentation
-- (DONE) Backend Architecture (Repositories, Services, Schemas & Routers)
-- (DONE) ETL Pipeline (CSV Extractor, Transformer & Loader)
-- (DOING) Data Processing & Analysis
-- (WAITING) NLP & Sentiment Analysis
-- (WAITING) Machine Learning
+- (DONE) FastAPI Setup & Swagger Documentation
+- (DONE) Backend Architecture (Repositories, Services, Schemas, Routers)
+- (DONE) ETL Pipeline (CSV Extractor, Transformer, Loader)
+- (DONE) Exploratory Data Analysis (EDA)
+- (DONE) NLP & Sentiment Analysis (VADER)
+- (DOING) Machine Learning (Logistic Regression + TF-IDF)
 - (WAITING) Dashboard & Analytics
 - (WAITING) AI Assistant (RAG)
 - (WAITING) Docker & Deployment
 
 ## Architecture
-
-The project follows a layered architecture inspired by Java/Spring Boot:
 
 ```
 src/
@@ -55,28 +52,52 @@ src/
 ├── repositories/         # Data access layer (CRUD)
 ├── services/             # Business logic layer
 ├── etl/
-│   ├── extractors/       # Data extraction (CSV, future: scraping)
+│   ├── extractors/       # Data extraction (CSV)
 │   ├── transformers/     # Data cleaning and normalization
 │   └── loaders/          # Database persistence via repositories
-├── ml/                   # Machine learning models (coming soon)
+├── ml/
+│   └── sentiment/        # Sentiment analysis (VADER + ML)
 └── utils/                # Shared utilities
+
+notebooks/
+├── 01_eda.ipynb                  # Exploratory data analysis
+└── 02_sentiment_analysis.ipynb   # Sentiment distribution and validation
+
+data/
+└── raw/                  # Raw input datasets
 ```
 
 ## Running the project
 
 ```bash
 # activate virtual environment
-source .venv/Scripts/activate
+source .venv/Scripts/activate  # Git Bash
+.venv\Scripts\activate         # PowerShell
 
 # start the API
 uvicorn src.main:app --reload
 
 # run ETL pipeline
 python -m src.etl.pipeline data/raw/reviews.csv
+
+# run sentiment analysis
+python -m src.ml.sentiment.updater
+
+# start Jupyter
+jupyter notebook
 ```
 
 API docs available at `http://localhost:8000/docs`
 
-## About
+## Dataset
 
-End-to-end review intelligence platform built to study software architecture, data engineering, analytics, machine learning and AI.
+Google Maps Restaurant Reviews — 1100 reviews across 100 restaurants.
+Categories: taste, menu, indoor_atmosphere, outdoor_atmosphere.
+
+## Key Insights (EDA)
+
+- 70% of reviews are rated 4 or 5 stars (positive bias)
+- Menu category has the lowest average rating (3.69)
+- Negative reviews tend to be slightly longer than positive ones
+- VADER classified 76% positive, 14% negative, 9% neutral
+- Strong correlation between sentiment and rating (negative avg: 2.55, positive avg: 4.25)
