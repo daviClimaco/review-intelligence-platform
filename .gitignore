@@ -32,3 +32,9 @@ Thumbs.db
 # Coverage
 .coverage
 htmlcov/
+
+# ML Models
+*.pkl
+
+# Data
+data/
