@@ -21,6 +21,7 @@ An end-to-end review intelligence platform built to study software architecture,
 - Scikit-learn
 - NLTK (VADER)
 - Jupyter Notebook
+- Streamlit
 
 ## Status
 
@@ -33,9 +34,9 @@ An end-to-end review intelligence platform built to study software architecture,
 - (DONE) ETL Pipeline (CSV Extractor, Transformer, Loader)
 - (DONE) Exploratory Data Analysis (EDA)
 - (DONE) NLP & Sentiment Analysis (VADER)
-- (DOING) Machine Learning (Logistic Regression + TF-IDF)
-- (WAITING) Dashboard & Analytics
-- (WAITING) AI Assistant (RAG)
+- (DONE) Machine Learning (Logistic Regression + TF-IDF)
+- (DONE) Dashboard & Analytics
+- (DOING) AI Assistant (RAG)
 - (WAITING) Docker & Deployment
 
 ## Architecture
@@ -85,6 +86,9 @@ python -m src.ml.sentiment.updater
 
 # start Jupyter
 jupyter notebook
+
+# start dashboard
+streamlit run dashboard/app.py
 ```
 
 API docs available at `http://localhost:8000/docs`
