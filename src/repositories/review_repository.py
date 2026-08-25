@@ -9,8 +9,14 @@ class ReviewRepository:
     def __init__(self, db: Session) -> None:
         self.db = db
 
-    def get_all(self) -> list[Review]:
-        return self.db.query(Review).order_by(Review.id).all()
+    def get_all(self, skip: int = 0, limit: int = 50) -> list[Review]:
+        return (
+            self.db.query(Review)
+            .order_by(Review.id)
+            .offset(skip)
+            .limit(limit)
+            .all()
+        )
 
     def get_by_id(self, review_id: int) -> Review | None:
         return self.db.query(Review).filter(Review.id == review_id).first()
@@ -48,3 +54,10 @@ class ReviewRepository:
     def delete(self, review: Review) -> None:
         self.db.delete(review)
         self.db.commit()
+
+    def exists(self, author_id: int, review_text: str) -> bool:
+        return (
+            self.db.query(Review)
+            .filter(Review.author_id == author_id, Review.review_text == review_text)
+            .first() is not None
+        )

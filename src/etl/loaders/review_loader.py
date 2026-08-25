@@ -31,10 +31,16 @@ class ReviewLoader:
 
     def load(self, rows: list[dict]) -> None:
         loaded = 0
+        skipped = 0
 
         for row in rows:
             author = self._get_or_create_author(row["author_name"])
             category = self._get_or_create_category(row["category_name"])
+
+            # skip if review already exists in the database
+            if self.review_repo.exists(author.id, row["review_text"]):
+                skipped += 1
+                continue
 
             self.review_repo.create(ReviewCreate(
                 author_id=author.id,
@@ -47,4 +53,4 @@ class ReviewLoader:
             ))
             loaded += 1
 
-        print(f"[Loader] {loaded} reviews saved to database")
+        print(f"[Loader] {loaded} reviews saved, {skipped} duplicates skipped")
