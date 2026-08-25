@@ -29,8 +29,8 @@ class ReviewService:
                 detail=f"Category with id {category_id} not found.",
             )
 
-    def get_all(self, skip: int = 0, limit: int = 50) -> list[ReviewResponse]:
-        return self.repository.get_all(skip=skip, limit=limit)
+    def get_all(self, skip: int = 0, limit: int = 50, sentiment: str | None = None, rating: float | None = None) -> list[ReviewResponse]:
+        return self.repository.get_all(skip=skip, limit=limit, sentiment=sentiment, rating=rating)
 
     def get_by_id(self, review_id: int) -> Review:
         review = self.repository.get_by_id(review_id)

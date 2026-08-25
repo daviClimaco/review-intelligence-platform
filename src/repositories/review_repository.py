@@ -9,14 +9,16 @@ class ReviewRepository:
     def __init__(self, db: Session) -> None:
         self.db = db
 
-    def get_all(self, skip: int = 0, limit: int = 50) -> list[Review]:
-        return (
-            self.db.query(Review)
-            .order_by(Review.id)
-            .offset(skip)
-            .limit(limit)
-            .all()
-        )
+    def get_all(self, skip: int = 0, limit: int = 50, sentiment: str | None = None, rating: float | None = None) -> list[Review]:
+        query = self.db.query(Review)
+
+        # apply optional filters dynamically
+        if sentiment:
+            query = query.filter(Review.sentiment == sentiment)
+        if rating:
+            query = query.filter(Review.rating == rating)
+
+        return query.order_by(Review.id).offset(skip).limit(limit).all()
 
     def get_by_id(self, review_id: int) -> Review | None:
         return self.db.query(Review).filter(Review.id == review_id).first()
