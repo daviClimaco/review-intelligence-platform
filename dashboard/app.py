@@ -85,6 +85,7 @@ st.header("Review Explorer")
 # selectbox creates a dropdown filter
 category_filter = st.selectbox("Filter by category", ["All"] + sorted(df["category_name"].unique()))
 sentiment_filter = st.selectbox("Filter by sentiment", ["All", "positive", "neutral", "negative"])
+platform_filter = st.selectbox("Filter by platform", ["All"] + sorted(df["platform"].unique()))
 
 # apply filters only when they are not "All"
 filtered = df.copy()
@@ -92,6 +93,8 @@ if category_filter != "All":
     filtered = filtered[filtered["category_name"] == category_filter]
 if sentiment_filter != "All":
     filtered = filtered[filtered["sentiment"] == sentiment_filter]
+if platform_filter != "All":
+    filtered = filtered[filtered["platform"] == platform_filter]
 
 st.write(f"{len(filtered)} reviews found")
 
