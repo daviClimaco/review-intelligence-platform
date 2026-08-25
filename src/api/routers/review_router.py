@@ -12,8 +12,14 @@ router = APIRouter(
 
 
 @router.get("/", response_model=list[ReviewResponse])
-def get_all_reviews(skip: int = 0, limit: int = 50, db: Session = Depends(get_db)):
-    return ReviewService(db).get_all(skip=skip, limit=limit)
+def get_all_reviews(
+    skip: int = 0,
+    limit: int = 50,
+    sentiment: str | None = None,
+    rating: float | None = None,
+    db: Session = Depends(get_db),
+):
+    return ReviewService(db).get_all(skip=skip, limit=limit, sentiment=sentiment, rating=rating)
 
 
 @router.get("/{review_id}", response_model=ReviewResponse)
