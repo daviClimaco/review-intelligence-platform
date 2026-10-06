@@ -36,8 +36,9 @@ An end-to-end review intelligence platform built to study software architecture,
 - (DONE) NLP & Sentiment Analysis (VADER)
 - (DONE) Machine Learning (Logistic Regression + TF-IDF)
 - (DONE) Dashboard & Analytics
-- (DOING) AI Assistant (RAG)
-- (WAITING) Docker & Deployment
+- (DONE) Docker & Deployment
+- (WAITING) AI Assistant (RAG)
+
 
 ## Architecture
 
